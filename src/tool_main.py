@@ -42,7 +42,7 @@ def main():
     subcommand = sys.argv[1]
 
     #######################################
-    # init
+    # check command type and create it 
     #
     if subcommand == 'sample':
         command = sample.SampleSubcommand(options)

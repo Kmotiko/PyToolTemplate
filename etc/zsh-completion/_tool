@@ -1,0 +1,35 @@
+#compdef tool
+
+_tool_subcommand(){
+    compadd 'sample'  'sample'
+}
+
+_tool_subcommands(){
+    command=${words[2]} 
+    cur_word=${words[$CURRENT]}
+    case $command in
+        'sample')
+            if [ $CURRENT -gt 4 ]; then
+                return
+            fi
+            _tool_sample;;
+    esac
+}
+
+_tool_sample(){
+    _values \
+      'sample' \
+      '--foo' \
+      '--bar'
+    return 0
+}
+
+_tool(){
+    if [ $CURRENT -eq 2 ]; then
+        _tool_subcommand
+    elif [ $CURRENT -ge 3 ]; then
+        _tool_subcommands
+    fi
+}
+
+compdef _tool tool
